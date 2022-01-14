@@ -3,3 +3,6 @@ report/*
 !report/*.sty
 !report/*.tex
 !report/*.pdf
+
+# Ignore data
+data/*.csv
