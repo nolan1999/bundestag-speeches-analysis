@@ -1,3 +1,6 @@
+"""API connection and storing functions.
+"""
+
 import pandas as pd
 import requests
 
@@ -21,7 +24,6 @@ def extract_df_from_json(json_data):
     speeches = []
     ids = []
     for d in data:
-        print(d)
         id_ = d['id']
         date = d['attributes']['dateStart'][:10]
         texts = d['attributes']['textContents'][0]['textBody']
