@@ -66,8 +66,11 @@ def extract_data_from_json(json_data):
         try:
             id_ = d['id']
             date = d['attributes']['dateStart'][:10]
-            texts = d['attributes']['textContents'][0]['textBody']
-            text = extract_speech(texts)
+            if d['attributes']['textContents'] != []:
+                texts = d['attributes']['textContents'][0]['textBody']
+                text = extract_speech(texts)
+            else:
+                text = None
             org_data = d['relationships']['organisations']['data']
             party = None
             for org_d in org_data:
