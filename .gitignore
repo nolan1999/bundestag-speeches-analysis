@@ -5,7 +5,8 @@ report/*
 !report/*.pdf
 
 # Ignore data
-data/*.csv
+**/*.csv
 data/state.txt
 
+# Ignore python compiled files
 **/*.pyc

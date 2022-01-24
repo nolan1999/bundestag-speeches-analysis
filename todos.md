@@ -3,7 +3,8 @@
  - [ ] Remove print.
  - [ ] Refine formalities list.
  - [x] Test preprocessing & remove duplicates.
- - [ ] LDA topic extraction => Arthur.
+ - [x] LDA topic extraction => Arthur.
+ - [ ] German stopwords?
 
 
  - [ ] Analyze and name topics.
