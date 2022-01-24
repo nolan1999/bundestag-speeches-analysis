@@ -7,3 +7,5 @@ report/*
 # Ignore data
 data/*.csv
 data/state.txt
+
+**/*.pyc

@@ -6,6 +6,9 @@ from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
 
+#TODO: remove duplicates
+
+
 # Parties of interest
 PARTIES = [
     'SPD',
