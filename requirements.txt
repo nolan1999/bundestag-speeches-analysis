@@ -1,0 +1,5 @@
+pandas
+# run nltk.download() and download corpora
+nltk
+requests
+scikit-learn
