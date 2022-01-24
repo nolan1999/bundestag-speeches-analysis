@@ -30,7 +30,7 @@ def get_pages(n_pages=50):
         year = 2017
         page = 1
         with open(os.path.join(os.path.dirname(__file__), 'data.csv'), 'w', encoding='utf-8') as f:
-            f.write('id, date, party, text\n')
+            f.write('id;;;date;;;party;;;text\n')
     # next page
     # get one page at a time (10 speeches)
     for _ in range(n_pages):

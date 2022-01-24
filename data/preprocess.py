@@ -1,12 +1,21 @@
 """Utility functions for preprocessing the downloaded data.
 """
 
+import os
+import pandas as pd
 import re
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-#TODO: remove duplicates
+def preprocess_data():
+    df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'data.csv'), sep=';;;', header=0)
+    # remove duplicates
+    df.drop_duplicates(subset='id', inplace=True)
+    df.set_index('id', inplace=True)
+    df = filter_parties(df, PARTIES)
+    preprocess(df)
+    df.to_csv(os.path.join(os.path.dirname(__file__), 'preprocessed_data.csv'))
 
 
 # Parties of interest
@@ -25,12 +34,10 @@ PARTIES = [
 EXPRS = [
     r'Herr Präsident! ',
     r'Frau Präsidentin! ',
-    r'Liebe Kolleginnen und Kollegen! ',
-    r'Meine Damen und Herren! ',
-    r'Herzlichen Dank.*\. ',
-    r'Recht vielen Dank.*\. ',
-    r'Ich danke (Ihnen)|(euch).*!|\.',
-    r'.|!|\? .*N|nächste(r|n)* Red(nerin|er).*\.',
+    r'((l|L)ieben?|(m|M)einen?|(s|S)ehr geehrten?|(s|S)ehr verehrten?)+ (Kolleginnen und Kollegen|Damen und Herren)! ',
+    r'(Herzlichen|Recht vielen) Dank\. ',
+    r'Ich danke (Ihnen|euch)(!|\.) ',
+    r'D|d(er|ie) N|nächste(r|n)? Red(nerin|er).*\.',
 ]
 
 
@@ -61,3 +68,8 @@ def preprocess(df, col='text'):
     prepr = get_preprocessor()
     preprocess_fn = lambda t: prepr(remove_formalities(t))
     df['preprocessed_text'] = df[col].apply(preprocess_fn)
+    df.drop(columns='text', inplace=True)
+
+
+if __name__ == '__main__':
+    preprocess_data()
