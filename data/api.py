@@ -2,6 +2,7 @@
 """API connection and storing functions.
 """
 
+from datetime import MAXYEAR
 import os
 import pandas as pd
 import requests
@@ -20,37 +21,44 @@ def get_pages(n_pages=50):
     # file for storing "cursor" position
     file_path = os.path.join(os.path.dirname(__file__), 'state.txt')
     try:
-        # start from where it left off
+        # check wether we can start from where it left off
         with open(file_path, 'r', encoding='utf-8') as f:
-            year, page = f.read().split(';')
-            year = int(year)
-            page = int(page) + 1
+            pass
     except:
         # if first call, start from initial data
         year = 2017
         page = 1
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(f'{year};{page}')
         with open(os.path.join(os.path.dirname(__file__), 'data.csv'), 'w', encoding='utf-8') as f:
             f.write('id;;;date;;;party;;;text\n')
     # next page
     # get one page at a time (10 speeches)
     for _ in range(n_pages):
-        get_data({'dateFrom': f'{year}-01-01', 'page': page})
+        with open(file_path, 'r', encoding='utf-8') as f:
+            year, page = f.read().split(';')
+            year = int(year)
+            page = int(page)
+        #get the year of the newest speech
+        data_year = get_data({'dateFrom': f'{year}-01-01', 'page': page})
+        data_year = int(data_year)
         # store states
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(f'{year};{page}')
-        page += 1
-        if page > MAX_PAGES:
-            year += 1
-            if year > CURRENT_YEAR:
+        if data_year == year + 1 or page > MAX_PAGES:
+            if year + 1 > CURRENT_YEAR:
                 return
-            page = 1
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(f'{year + 1};{1}')
+        else:
+            page += 1
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(f'{year};{page}')
 
 
 def get_data(options):
     json_data = send_request(options)
     if json_data['meta']['results']['count']:
-        extract_data_from_json(json_data)
-
+        data_year = extract_data_from_json(json_data)
+    return data_year
 
 def send_request(options):
     url = f'{URL_BASE}?{"&".join([f"{k}={v}" for k, v in options.items()])}'
@@ -78,10 +86,11 @@ def extract_data_from_json(json_data):
                     party = org_d['attributes']['labelAlternative']
             csv_data += f'{id_};;;{date};;;{party};;;{text}\n'
         except:
-            print('fail')
+            print('Exception - occured while reading data from API')
     # save to .csv
     with open(os.path.join(os.path.dirname(__file__), 'data.csv'), 'a', encoding='utf-8') as f:
         f.write(csv_data)
+    return date[:4]
 
 
 def extract_speech(texts):

@@ -1,6 +1,6 @@
- - [ ] Fix year increase => Manu.
- - [ ] Fix failing requests (now: 1419/5000 fails) => Manu.
- - [ ] Remove print.
+ - [x] Fix year increase => Manu.
+ - [x] Fix failing requests (now: 1419/5000 fails) => Manu.
+ - [x] Remove print. - zumindest angepasst und exceptions dürfen sich ja auch beschweren... Im Normalfall kommen jedoch beim Einlesen keine Prints mehr
  - [ ] Refine formalities list.
  - [x] Test preprocessing & remove duplicates.
  - [x] LDA topic extraction => Arthur.

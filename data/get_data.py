@@ -5,4 +5,4 @@ from api import get_pages
 
 
 if __name__ == '__main__':
-    get_pages(100)
+    get_pages(500)
