@@ -24,17 +24,16 @@ def get_pages(n_pages=50):
         with open(file_path, 'r', encoding='utf-8') as f:
             year, page = f.read().split(';')
             year = int(year)
-            page = int(page)
+            page = int(page) + 1
     except:
         # if first call, start from initial data
         year = 2017
-        page = 0
+        page = 1
         with open(os.path.join(os.path.dirname(__file__), 'data.csv'), 'w', encoding='utf-8') as f:
             f.write('id, date, party, text\n')
     # next page
-    page += 1
     # get one page at a time (10 speeches)
-    for _ in range(n_pages-1):
+    for _ in range(n_pages):
         get_data({'dateFrom': f'{year}-01-01', 'page': page})
         # store states
         with open(file_path, 'w', encoding='utf-8') as f:
