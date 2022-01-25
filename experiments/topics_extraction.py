@@ -24,7 +24,7 @@ def plot_topics(topics, title='Top predictor features', n_words=9):
     # Source: https://scikit-learn.org/stable/auto_examples/applications/plot_topics_extraction_with_nmf_lda.html
     n_cols = 3
     n_rows = ceil(len(topics)/n_cols)
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(5*n_cols, int(n_rows*5*n_words/10)))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(6*n_cols, int(n_rows*5*n_words/10)))
     axes = axes.flatten()
     for topic_idx, topic in enumerate(topics):
         top_features = list(topic.items())[:n_words]

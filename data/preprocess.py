@@ -14,6 +14,7 @@ def preprocess_data(data_path, preprocessed_data_path):
     df = pd.read_csv(data_path, sep=';;;', header=0)
     # remove duplicates
     df.drop_duplicates(subset='id', inplace=True)
+    df = df[df.text != 'None']
     df.set_index('id', inplace=True)
     df = filter_parties(df, PARTIES)
     preprocess(df)

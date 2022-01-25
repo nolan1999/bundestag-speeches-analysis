@@ -8,7 +8,7 @@ topic_extraction_params = {
     'n_topics': 6,
     'tfidf': True,
     'max_df': 0.5,
-    'min_df': 5,
+    'min_df': 10,
 }
 
 topic_plot_params = {

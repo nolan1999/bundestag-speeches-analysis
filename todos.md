@@ -5,6 +5,7 @@
  - [x] Test preprocessing & remove duplicates.
  - [x] LDA topic extraction => Arthur.
  - [x] German stopwords?
+ - [ ] Normalize features?
 
 
  - [x] Extract topics and print topic words.
