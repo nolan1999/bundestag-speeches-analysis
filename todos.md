@@ -4,7 +4,7 @@
  - [ ] Refine formalities list.
  - [x] Test preprocessing & remove duplicates.
  - [x] LDA topic extraction => Arthur.
- - [ ] German stopwords?
+ - [x] German stopwords?
 
 
  - [ ] Analyze and name topics.

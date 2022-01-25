@@ -3,6 +3,7 @@
 
 import pandas as pd
 import re
+from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -60,9 +61,12 @@ def get_preprocessor():
     """Preprocesses text: separate words, remove stopwords, stem.
     """
     #TODO: parallelize
+    de_stopwords = stopwords.words('german')
     stemmer = SnowballStemmer('german', ignore_stopwords=True)
     analyzer = CountVectorizer().build_analyzer()
-    return lambda text: ' '.join([stemmer.stem(w) for w in analyzer(text)])
+    return lambda text: ' '.join(
+        [stemmer.stem(w) for w in analyzer(text)
+        if w not in de_stopwords])
 
 
 def preprocess(df, col='text'):
