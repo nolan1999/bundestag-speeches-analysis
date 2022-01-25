@@ -7,6 +7,12 @@
  - [x] German stopwords?
 
 
+ - [x] Extract topics and print topic words.
+ - [ ] Visualize party average topics.
+ - [ ] Extract sentiments.
+ - [ ] Summary statistics.
+ - [ ] General time series of topics.
+ - [ ] Correlation sentiment-topic for each party.
  - [ ] Analyze and name topics.
  - [ ] Download all data.
 ...anlyses and topics..
