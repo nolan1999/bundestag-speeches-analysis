@@ -1,21 +1,22 @@
 """Utility functions for preprocessing the downloaded data.
 """
 
-import os
 import pandas as pd
 import re
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-def preprocess_data():
-    df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'data.csv'), sep=';;;', header=0)
+def preprocess_data(data_path, preprocessed_data_path):
+    """Function for preprocessing pipeline.
+    """
+    df = pd.read_csv(data_path, sep=';;;', header=0)
     # remove duplicates
     df.drop_duplicates(subset='id', inplace=True)
     df.set_index('id', inplace=True)
     df = filter_parties(df, PARTIES)
     preprocess(df)
-    df.to_csv(os.path.join(os.path.dirname(__file__), 'preprocessed_data.csv'))
+    df.to_csv(preprocessed_data_path)
 
 
 # Parties of interest
@@ -65,11 +66,9 @@ def get_preprocessor():
 
 
 def preprocess(df, col='text'):
+    """Processing of each text.
+    """
     prepr = get_preprocessor()
     preprocess_fn = lambda t: prepr(remove_formalities(t))
     df['preprocessed_text'] = df[col].apply(preprocess_fn)
     df.drop(columns='text', inplace=True)
-
-
-if __name__ == '__main__':
-    preprocess_data()
