@@ -3,3 +3,4 @@ pandas
 nltk
 requests
 scikit-learn
+tueplot
