@@ -4,13 +4,13 @@ import os
 dir_path = os.path.dirname(__file__)
 
 topic_extraction_params = {
-    'model': 'LatentDirichletAllocation',
+    'model': 'NMF',
     'n_topics': 9,
-    'tfidf': False,
-    'max_df': 0.3,
+    'tfidf': True,
+    'max_df': 0.5,
     'min_df': 20,
-    'max_iter': 50,
-    'stem': True,
+    'max_iter': 500,
+    'stem': False,
 }
 
 topic_plot_params = {

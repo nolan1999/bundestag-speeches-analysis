@@ -6,6 +6,7 @@
  - [x] LDA topic extraction => Arthur.
  - [x] German stopwords?
  - [ ] Normalize features?
+ - [ ] Enforce sparsity in LatentDirichletAllocation (Dirichlet parameter).
 
 
  - [x] Extract topics and print topic words.

@@ -58,15 +58,15 @@ def remove_formalities(string):
     return string
 
 
-def get_preprocessor():
+def get_preprocessor(stem=True, remove_stopwords=True):
     """Preprocesses text: separate words, remove stopwords, stem.
     """
     #TODO: parallelize
-    de_stopwords = stopwords.words('german')
-    stemmer = SnowballStemmer('german', ignore_stopwords=True)
+    de_stopwords = stopwords.words('german') if remove_stopwords else []
+    stemmer = SnowballStemmer('german', ignore_stopwords=True).stem if stem else lambda x: x
     analyzer = CountVectorizer().build_analyzer()
     return lambda text: ' '.join(
-        [stemmer.stem(w) for w in analyzer(text)
+        [(stemmer(w)) for w in analyzer(text)
         if w not in de_stopwords])
 
 
@@ -74,6 +74,7 @@ def preprocess(df, col='text'):
     """Processing of each text.
     """
     prepr = get_preprocessor()
-    preprocess_fn = lambda t: prepr(remove_formalities(t))
-    df['preprocessed_text'] = df[col].apply(preprocess_fn)
+    prepr_no_stemming = get_preprocessor(stem=False)
+    df['preprocessed_text'] = df[col].apply(lambda t: prepr(remove_formalities(t)))
+    df['preprocessed_unstemmed_text'] = df[col].apply(lambda t: prepr_no_stemming(remove_formalities(t)))
     df.drop(columns='text', inplace=True)

@@ -32,7 +32,7 @@ def plot_topics(topics, title='Top predictor features', n_words=9):
         weights = [f[1] for f in top_features]
         ax = axes[topic_idx]
         ax.barh(words, weights)
-        ax.set_title(f"Topic {topic_idx + 1}", fontsize=20)
+        ax.set_title(f"Topic{topic_idx}", fontsize=20)
         ax.invert_yaxis()
         ax.tick_params(axis="both", which="major", labelsize=20)
     fig.suptitle(title, fontsize=30)
