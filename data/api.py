@@ -34,8 +34,11 @@ def get_pages(data_path, state_path, n_pages=50):
             year = int(year)
             page = int(page)
         #get the year of the newest speech
-        data_year = get_data({'dateFrom': f'{year}-01-01', 'page': page}, data_path)
-        data_year = int(data_year)
+        try:
+            data_year = get_data({'dateFrom': f'{year}-01-01', 'page': page}, data_path)
+            data_year = int(data_year)
+        except:
+            pass
         # store states
         if data_year == year + 1:
             if year + 1 > CURRENT_YEAR:
