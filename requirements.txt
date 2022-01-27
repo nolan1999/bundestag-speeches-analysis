@@ -4,4 +4,4 @@ pdf2image
 nltk
 requests
 scikit-learn
-tueplot
+tueplots
