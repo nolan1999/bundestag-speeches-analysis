@@ -17,6 +17,7 @@ def get_topics(params_path):
     with open(os.path.join(save_path, 'topics.json'), 'w') as f:
         json.dump(topics, f)
     fig.savefig(os.path.join(save_path, 'topics_words.pdf'))
+    return df, topics
 
 
 def plot_topics(topics, title='Top predictor features', n_words=9):
