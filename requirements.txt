@@ -1,7 +1,10 @@
+jupyter
 pandas
 pdf2image
 # run nltk.download() and download collections
+matplotlib
 nltk
+numpy
 requests
 scikit-learn
 tueplots
