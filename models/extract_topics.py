@@ -1,8 +1,9 @@
 import pandas as pd
+import numpy as np
 import random
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 from models.featurize import featurize
-
+from scipy.sparse import csr_matrix
 
 def extract_topics(input_data_path, model='LatentDirichletAllocation',
                 n_topics=6, tfidf=True, max_df=0.5, min_df=5, max_iter=200, stem=True):
@@ -28,12 +29,18 @@ def extract_topics(input_data_path, model='LatentDirichletAllocation',
 def fit_model(train_data, n_topics, model, max_iter, n_docs=None, random_state=0):
     """Fit the specified model to the passed data.
     """
+    train_data = create_sparse_matrix(train_data)
     if n_docs:
         train_data = random.sample(train_data, n_docs)
     trained_model = eval(model)(
-        n_components=n_topics, random_state=random_state, max_iter=max_iter)
+        n_components=n_topics, random_state=random_state, max_iter=max_iter)  
     trained_model.fit(train_data)
     return trained_model
+
+
+def create_sparse_matrix(df):
+    df = csr_matrix(df.astype(np.float))
+    return df
 
 
 def transform_docs(trained_model, train_data):
