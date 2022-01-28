@@ -6,7 +6,7 @@ from models.featurize import featurize
 from scipy.sparse import csr_matrix
 
 def extract_topics(input_data_path, model='LatentDirichletAllocation',
-                n_topics=6, tfidf=True, max_df=0.5, min_df=5, max_iter=200, stem=True):
+                n_topics=6, tfidf=True, max_df=0.5, min_df=5, max_iter=200, stem=True, random_state=0):
     """Extract topics from speeches.
     Featurize, train model, transform documents.
     Returns model's words and transformed documents.
@@ -16,7 +16,7 @@ def extract_topics(input_data_path, model='LatentDirichletAllocation',
     col = 'preprocessed_text' if stem else 'preprocessed_unstemmed_text'
     count_feats, feature_names = featurize(df, tfidf=tfidf, max_df=max_df, min_df=min_df, col=col)
     # Train model and transform data
-    trained_model = fit_model(count_feats, n_topics, model, max_iter)
+    trained_model = fit_model(count_feats, n_topics, model, max_iter, random_state=random_state)
     transformed_data = transform_docs(trained_model, count_feats)
     # Extract topic features
     topics = get_topic_words(trained_model, feature_names)
@@ -29,7 +29,7 @@ def extract_topics(input_data_path, model='LatentDirichletAllocation',
 def fit_model(train_data, n_topics, model, max_iter, n_docs=None, random_state=0):
     """Fit the specified model to the passed data.
     """
-    train_data = create_sparse_matrix(train_data)
+    #train_data = create_sparse_matrix(train_data)
     if n_docs:
         train_data = random.sample(train_data, n_docs)
     trained_model = eval(model)(
