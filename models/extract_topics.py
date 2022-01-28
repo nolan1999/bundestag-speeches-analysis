@@ -1,3 +1,4 @@
+from operator import index
 import pandas as pd
 import numpy as np
 import random
@@ -12,7 +13,7 @@ def extract_topics(input_data_path, model='LatentDirichletAllocation',
     Returns model's words and transformed documents.
     """
     # Featurize
-    df = pd.read_csv(input_data_path)
+    df = pd.read_csv(input_data_path, index_col='id')
     col = 'preprocessed_text' if stem else 'preprocessed_unstemmed_text'
     count_feats, feature_names = featurize(df, tfidf=tfidf, max_df=max_df, min_df=min_df, col=col)
     # Train model and transform data
