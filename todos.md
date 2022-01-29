@@ -1,4 +1,4 @@
--  [ ] Plot commulated with colors
+-  [x] Plot commulated with colors
 -  [ ] Average/Mean plotting
 -  [ ] better smoothing
 -  [ ] try high iterations/different random
