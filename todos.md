@@ -1,5 +1,5 @@
 -  [x] Plot commulated with colors
--  [ ] Average/Mean plotting
+-  [x] Average/Mean plotting
 -  [ ] better smoothing
 -  [ ] try high iterations/different random
  - [ ] Interpret time evolution by party plots.
