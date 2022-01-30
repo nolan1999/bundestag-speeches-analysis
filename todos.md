@@ -4,8 +4,8 @@
 -  [ ] try high iterations/different random
  - [ ] Interpret time evolution by party plots.
 
- - [ ] Extract sentiments.
- - [ ] Correlation sentiment-topic for each party.
+ - [x] Extract sentiments.
+ - [x] Correlation sentiment-topic for each party.
 
 
 
