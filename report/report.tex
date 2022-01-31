@@ -78,6 +78,29 @@ Since only a very small subset of the speeches are assigned a positive sentiment
 We use p-value testing with a binomial assumption for the distribution of negative sentiments to test for significant asymmetrical differences between parties in the proportion of negative speeches.
 
 \section{Results}
+The topics extracted from the speeches dataset and the name that was assigned to them are summarized in Table~\ref{topics_table}.
+\begin{table}
+  \caption{Extracted topics}
+  \label{topics_table}
+  \centering
+  \begin{tabular}{p{0.02\linewidth} | p{0.2\linewidth} | p{0.78\linewidth}}
+    \toprule
+    \# & Assigned name & Strongest predictors \\
+    \midrule
+    1 & International & europa; deutsch; russland; staat; gemeinsam; international; eu; menschenrecht; welt; turkei. \\
+    2 & Military & soldat; einsatz; bundeswehr; mandat; soldatinn; mission; afghanistan; unterstutz; mali; militar. \\
+    3 & EU/Economy & europa; euro; eu; unternehm; milliard; deutsch; prozent; union; geld; wirtschaft. \\
+    4 & Social & kind; euro; famili; prozent; arbeit; sozial; 000; rent; miet; hoh. \\
+    5 & Decisions/Law & gesetzentwurf; bundestag; glaub; fall; thema; hatt; word; entscheid; punkt; regel. \\
+    6 & Democracy/Freedom & emokrati; leb; gesellschaft; freiheit; grundgesetz; staat; gewalt; deutsch; demokrat; wer. \\
+    7 & German History & deutsch; wer; ost; geschicht; stiftung; abstimm; 19; opf; stimmt; bitt. \\
+    8 & Ecology & klimaschutz; co; energi; prozent; erneuerbar; bau; ziel; verbrauch; energiew; wirtschaft. \\
+    9 & Health/Pandemic & pandemi; schul; unternehm; arbeit; stark; digital; bass; bereich; massnahm; wirtschaft. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
 \begin{itemize}
   \item Topic-words.
   \item Stacked plot.
