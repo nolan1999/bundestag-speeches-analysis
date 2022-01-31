@@ -27,7 +27,7 @@
 \usepackage{microtype}      % microtypography
 \usepackage{xcolor}         % colors
 
-\title{Historical topic shifts in German parliament speeches}
+\title{Semantic analysis of German parliament speeches}
 
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
@@ -60,7 +60,22 @@
 \section{Introduction}
 
 \section{Methods}
-Data collection, preprocessing, LDA, PCA, sentiment analysis, p-value testing.
+We download the texts of the Bundestag speeches in the timeframe 24 October 2017 to 7 September 2021 using the OpenParliament \cite{OpenParliamentTV} API.
+We discard all speeches not attributed to any of the major parliament factions (SPD, FDP, CDU/CSU, BÜNDNIS 90/DIE GRÜNEN, AfD, DIE LINKE).
+We remove as many ``formalities'' (expressions empty of content such as salutations) as possible, using regular expressions.
+
+For topic extraction, we use Scikit-learn's \cite{Scikit-learn} implementation of Latent Dirichlet Allocation with default parameters,  trained on the whole dataset and used to extract topics from each speech.
+The features are built by stemming the texts using Nltk's \cite{Nltk} Snowball German Stemmer and vectorizing using Scikit-learn's CountVectorizer \cite{Scikit-learn}.
+Tf-idf features were tried but led to less interpretable results.
+After topic extraction, we analyze the words having the highest weights for each topic and try to name the topics accordingly.
+We tried different parameters for vectorization and topic extraction methods (Non-negative Matrix Factorization) and decided on the parameters that yielded the best interpretable results (a subjective criterion).
+In the end, we opted for 9 topics and keeping only words appearing in at least 20 speeches and at most 30\% of the total amount of speeches for vectorization.
+For the visualization of time series, we use Gaussian smoothing.
+To plot the average party topic distributions, we reduce the dimensionality to 2 dimensions using Principal Component Analysis.
+
+Finally, we extract sentiments with the method provided the Python package germansentiment \cite{Germansentiment}, which uses the Bert architecture trained on German texts.
+Since only a very small subset of the speeches are assigned a positive sentiment (most being neutral), we concentrate our analysis on the fraction of negative speeches.
+We use p-value testing with a binomial assumption for the distribution of negative sentiments to test for significant asymmetrical differences between parties in the proportion of negative speeches.
 
 \section{Results}
 \begin{itemize}
@@ -73,5 +88,15 @@ Data collection, preprocessing, LDA, PCA, sentiment analysis, p-value testing.
 \end{itemize}
 
 \section{Discussion and conclusion}
+Limitations:
+\begin{itemize}
+  \item Data: incomplete data, aggressive procedure to get data, reliance of data
+  \item Visualization: smoothing (free parameters), short time frame
+  \item Topic extraction: free parameters, subjectivity of chosen topic names
+  \item Sentiment analysis: black-box model
+\end{itemize}
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
 
 \end{document}

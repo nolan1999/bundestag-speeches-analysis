@@ -1,5 +1,5 @@
 # Ignore TeX compile files
-report/*
+report/report*
 !report/*.sty
 !report/*.tex
 !report/*.pdf
