@@ -1,7 +1,7 @@
 -  [x] Plot commulated with colors
 -  [x] Average/Mean plotting
--  [ ] better smoothing
--  [ ] try high iterations/different random
+-  [x] better smoothing
+-  [x] try high iterations/different random
  - [ ] Interpret time evolution by party plots.
 
  - [x] Extract sentiments.
@@ -9,7 +9,9 @@
 
 
 
-
+Writing:
+ - [ ] Decide what to put in `' and what to emphasize.
+ - [ ] Add references.
 
 
 
