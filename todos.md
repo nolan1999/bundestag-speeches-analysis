@@ -12,6 +12,12 @@
 Writing:
  - [ ] Decide what to put in `' and what to emphasize.
  - [ ] Add references.
+ - [ ] Introduction.
+ - [ ] Discussion and conclusions.
+ - [ ] Check with tips in the lectures.
+ - [ ] Check formal requirements.
+ - [ ] Ask tutor about sentiment analysis.
+ - [ ] Topic analysis interpretation.
 
 
 
