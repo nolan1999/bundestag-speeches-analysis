@@ -18,6 +18,12 @@ Writing:
  - [ ] Check formal requirements.
  - [ ] Ask tutor about sentiment analysis.
  - [ ] Topic analysis interpretation.
+ - [ ] Change abstract.
+
+Plot:
+ - [ ] legend upper right topic
+ - [ ] colors stacked plot
+ - [ ] alpha levels
 
 
 
