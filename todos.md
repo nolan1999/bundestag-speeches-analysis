@@ -2,7 +2,7 @@
 -  [x] Average/Mean plotting
 -  [x] better smoothing
 -  [x] try high iterations/different random
- - [ ] Interpret time evolution by party plots.
+ - [x] Interpret time evolution by party plots.
 
  - [x] Extract sentiments.
  - [x] Correlation sentiment-topic for each party.
@@ -10,22 +10,17 @@
 
 
 Writing:
- - [ ] Decide what to put in `' and what to emphasize.
- - [ ] Add references.
- - [ ] Introduction.
- - [ ] Discussion and conclusions.
+ - [x] Decide what to put in `' and what to emphasize.
+ - [x] Add references.
+ - [x] Introduction.
+ - [x] Discussion and conclusions.
+ - [x] Check formal requirements.
+ - [x] Ask tutor about sentiment analysis.
+ - [x] Topic analysis interpretation.
+
  - [ ] Check with tips in the lectures.
- - [ ] Check formal requirements.
- - [ ] Ask tutor about sentiment analysis.
- - [ ] Topic analysis interpretation.
- - [ ] Change abstract.
+ - [x/?] Change abstract.
+
 
 Plot:
- - [x] legend upper right topic
- - [x] colors stacked plot
- - [x] alpha levels
-
-
-
- - [ ] Coefficients distribution? Enforce sparsity in LatentDirichletAllocation (Dirichlet parameter).
- - [ ] Refine formalities list.
+ - [x] alpha levels of legends even higher?
