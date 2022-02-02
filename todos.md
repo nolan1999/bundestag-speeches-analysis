@@ -21,9 +21,9 @@ Writing:
  - [ ] Change abstract.
 
 Plot:
- - [ ] legend upper right topic
- - [ ] colors stacked plot
- - [ ] alpha levels
+ - [x] legend upper right topic
+ - [x] colors stacked plot
+ - [x] alpha levels
 
 
 

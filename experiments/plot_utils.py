@@ -16,6 +16,8 @@ def smoothed_df(df, window=21, std=3):
 def stacked_plot(df, subset=None):
     y=[]
     topics=[]
+    #color_map = ["#003f5c", "#2f4b7c", "#665191", "#a05195", "#d45087", "#f95d6a", "#ff7c43", "#ffa600", "#FFCC00"]
+    color_map = ["#003f5c", "#f95d6a", "#2f4b7c", "#ff7c43", "#665191", "#ffa600", "#a05195", "#FFCC00", "#d45087"]
     cols = subset or df.columns
     for idx, topic_col in enumerate(cols):
         y.append(None)
@@ -25,7 +27,7 @@ def stacked_plot(df, subset=None):
     with plt.rc_context(bundles.neurips2021(usetex=False,family='serif')):
         ratio = 2.
         fig, ax = plt.subplots(figsize=adapt_figsize(ratio))
-        ax.stackplot(df.index.values, y, labels=topics, linewidth=2)
+        ax.stackplot(df.index.values, y, labels=topics, linewidth=2, colors = color_map)
         ax.set_xlim(left=df.index.values.min(), right=df.index.values.max())
         if subset is None:
             ax.set_ylim(bottom=0., top=1.)
@@ -35,7 +37,7 @@ def stacked_plot(df, subset=None):
         ax.set_ylabel('Topic weight')
         # revert legend order to follow stacked order
         handles, labels = ax.get_legend_handles_labels()
-        ax.legend(handles[::-1], labels[::-1], framealpha=0.4, loc='upper left')
+        ax.legend(handles[::-1], labels[::-1], framealpha=0.5, loc='upper left')
     return fig
 
 
@@ -66,7 +68,7 @@ def topic_plot(df, topic):
         ax.set_xlim(left=df.index.values.min(), right=df.index.values.max())
         ax.set_xlabel('Date')
         ax.set_ylabel('Topic weight')
-        ax.legend(framealpha=0.4, loc='upper left')
+        ax.legend(framealpha=0.5, loc='upper right',ncol=2)
     return fig
 
 
