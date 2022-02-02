@@ -28,6 +28,8 @@
 \usepackage{xcolor}         % colors
 \usepackage[pdftex]{graphicx}
 \usepackage{caption}
+\usepackage{comment}
+
 
 \title{Semantic analysis of German parliament speeches}
 
@@ -52,14 +54,23 @@
 \begin{document}
 
 \maketitle
-
+\begin{comment}
 \begin{abstract}
   We are planning to use the dataset of speech transcripts of the German Bundestag (\url{https://de.openparliament.tv/api/}).
   Our main research question is how the topics of the speeches have changed over time, both in general and by party.
   We propose to use Latent Dirichlet Allocation (LDA) for topic extraction and visualize the results both with simple barplots and time series visualizations.
 \end{abstract}
+\end{comment}
+
 
 \section{Introduction}
+This paper deals with a semantic analysis of speeches in the German parliament. 
+For this, the transcribed speeches are used as a basis.
+The aim is to analyze temporal shifts of the topics and to identify the different emphases and positions of parties on certain topics.
+
+First, an overview of the methods used will be given, followed by a presentation of the found results. 
+Finally the methodology will be critically questioned and a conclusion can be given.
+
 
 \section{Methods}
 We download the texts of the Bundestag speeches from 24 October 2017 to 7 September 2021 using the OpenParliament \cite{OpenParliamentTV} API.
@@ -179,14 +190,28 @@ These results are coherent with the hypothesis that non-governing parties tend t
 
 
 \section{Discussion and conclusion}
-Limitations:
-\begin{itemize}
-  \item Data: incomplete data, aggressive procedure to get data, reliance of data
-  \item Visualization: smoothing (free parameters), short time frame, topics dictated by agenda
-  \item Topic extraction: free parameters, subjectivity of chosen topic names
-  \item Sentiment analysis: black-box model
-  \item p-value testing: correlated hypotheses, unbalanced data, data contained in both sets
-\end{itemize}
+
+There are some limitations that restrict the meaningfulness of the results. 
+In the used data some speeches are missing.
+However, since the missing texts are due to technical reasons and thus appear purely coincidental, the available data should provide a good representation of the speeches.
+Also, the data cover a very small time period of 4 years, which leads to a high influence of individual fluctuations.
+Besides the usual limitations of used methods, in Topic Extraction the best parameters were selected subjectively and the naming of the topics was also subjectively decided.
+When implementing p-value testing, the issue arises that the model used is created with the same data that is used for the evaluation.
+
+Besides these limitations, the methodology used can be considered a success. Thus, meaningful results were obtained and topics such as the Health/Pandemic behave as expected. 
+In addition, the created figures give good information about the temporal behavior and the parties among themselves.
+
+\begin{comment}
+  Limitations:
+  \begin{itemize}
+    \item Data: incomplete data, aggressive procedure to get data, reliance of data
+    \item Visualization: smoothing (free parameters), short time frame, topics dictated by agenda
+    \item Topic extraction: free parameters, subjectivity of chosen topic names
+    \item Sentiment analysis: black-box model
+    \item p-value testing: correlated hypotheses, unbalanced data, data contained in both sets
+  \end{itemize}
+  
+\end{comment}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
