@@ -54,20 +54,17 @@
 \begin{document}
 
 \maketitle
-\begin{comment}
+
+
 \begin{abstract}
-  We are planning to use the dataset of speech transcripts of the German Bundestag (\url{https://de.openparliament.tv/api/}).
-  Our main research question is how the topics of the speeches have changed over time, both in general and by party.
-  We propose to use Latent Dirichlet Allocation (LDA) for topic extraction and visualize the results both with simple barplots and time series visualizations.
+  This paper deals with a semantic analysis of speeches in the German parliament with the transcribed speeches as dataset.
+  Latent Dirichlet Allocation, Vectorization and sentiment analaysis are used to provide information about temporal shifts of topic shares and the different emphases and positions of parties on certain topics. 
 \end{abstract}
-\end{comment}
 
 
 \section{Introduction}
 This paper deals with a semantic analysis of speeches in the German parliament. 
-For this, the transcribed speeches are used as a basis.
-The aim is to analyze temporal shifts of the topics and to identify the different emphases and positions of parties on certain topics.
-
+Aim is to analyze temporal shifts of the topics and to identify the different emphases and positions of parties on certain topics.
 First, an overview of the methods used will be given, followed by a presentation of the found results. 
 Finally the methodology will be critically questioned and a conclusion can be given.
 
@@ -128,7 +125,7 @@ The \href{https://dserver.bundestag.de/btd/19/075/1907504.pdf}{Strong Families A
   \captionsetup{width=0.9\linewidth}
   \caption{
     Average weight of topics discussed in the Bundestag (with Gaussian smoothing) between October 2017 and September 2021.
-    The topics and topic weights are extracted using Latent Dirichlet Allocation.
+    %The topics and topic weights are extracted using Latent Dirichlet Allocation Todo(check).
   }
   \label{stacked_area_plot}
 \end{figure}
@@ -193,8 +190,8 @@ These results are coherent with the hypothesis that non-governing parties tend t
 
 There are some limitations that restrict the meaningfulness of the results. 
 In the used data some speeches are missing.
-However, since the missing texts are due to technical reasons and thus appear purely coincidental, the available data should provide a good representation of the speeches.
-Also, the data cover a very small time period of 4 years, which leads to a high influence of individual fluctuations.
+However, since the missing texts are due to technical reasons and thus appear purely coincidental, the available data provide a good representation of it.
+Also, the data cover a short period of 4 years, which leads to a high influence of individual fluctuations.
 Besides the usual limitations of used methods, in Topic Extraction the best parameters were selected subjectively and the naming of the topics was also subjectively decided.
 When implementing p-value testing, the issue arises that the model used is created with the same data that is used for the evaluation.
 
