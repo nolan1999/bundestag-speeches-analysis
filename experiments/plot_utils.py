@@ -116,11 +116,11 @@ def sentiments_plot(df):
         for party in parties])
 
     with plt.rc_context(bundles.neurips2021(usetex=False, family='serif')):
-        ratio = 3.
+        ratio = 2.5
         fig, ax = plt.subplots(figsize=adapt_figsize(ratio))
         im = ax.imshow(-sent, cmap='seismic')
 
-        #parties_labels = [p.replace('BÜNDNIS 90/', '') for p in parties]
+        parties_labels = [p.replace('BÜNDNIS 90/', '') for p in parties]
         parties_labels = parties
         ax.set_xticks(np.arange(len(topics)), labels=topics)
         ax.set_yticks(np.arange(len(parties)), labels=parties_labels)
