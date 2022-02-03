@@ -37,7 +37,7 @@ def stacked_plot(df, subset=None):
         ax.set_ylabel('Topic weight')
         # revert legend order to follow stacked order
         handles, labels = ax.get_legend_handles_labels()
-        ax.legend(handles[::-1], labels[::-1], framealpha=0.5, loc='upper left')
+        ax.legend(handles[::-1], labels[::-1], framealpha=0.5, loc='upper left', prop={'weight':'bold'})
     return fig
 
 
