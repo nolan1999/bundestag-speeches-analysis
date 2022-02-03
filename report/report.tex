@@ -65,8 +65,8 @@
 \section{Introduction}
 This paper describes a semantic analysis of transcribed speeches in the German parliament. 
 We first extract speech topics and analyze their temporal evolution.
-We then show that the credibility of the extraction by plotting the mean party topics and showing that the picture drawn is coherent to an intuitive view of the parties' differences.
-Since speech topics do not explain the positions of the parties regarding them, we extract sentiments.
+We then show the credibility of the extraction by visualizing the mean party topics and showing that the picture drawn is coherent to an intuitive view of the parties' differences.
+Since speech topics do not explain the positions of the parties regarding them, we extract sentiments and analyze their correlation with topics and parties.
 
 
 \section{Methods}
@@ -84,10 +84,10 @@ trained on the whole dataset.
 The texts are stemmed
 \footnote{Using \href{https://www.nltk.org/_modules/nltk/stem/snowball.html}{nltk's snowball German stemmer}.}
 and vectorized using the bag-of-words approach with word counts.
-We analyze the words having the highest weights for each topic and named the topics accordingly.
+We analyze the words having the highest weights for each topic and name the topics accordingly.
 We optimize the parameters for vectorization and topic extraction to obtain interpretable results (a subjective criterion).
 This results in keeping only words that appear in at least 20 speeches and at most 30\% of them for vectorization, and extracting 9 topics.
-To plot the average party topic distributions, we reduce the data to 2 dimensions using Principal Component Analysis.
+To visualize the average party topic distributions, we reduce the data to 2 dimensions using Principal Component Analysis.
 
 We extract sentiments using the \href{https://pypi.org/project/germansentiment/}{package germansentiment}, which applies the Bert architecture trained on German texts \cite{Germansentiment}.
 We use p-value testing with a binomial assumption for the distribution of negative sentiments to test for differences between parties in the proportion of negative speeches.
@@ -149,7 +149,7 @@ The \href{https://dserver.bundestag.de/btd/19/075/1907504.pdf}{Strong Families A
 In Figure~\ref{pca_plot} we show the results of 2-dimensional Principal Component Analysis on the average topic weights for each party.
 The results show the parties more or less sorted on the left-right axis along the second principal component.
 Furthermore, it shows the two parties that are considered more extremist (\textit{Die Linke} and \textit{AfD}) significantly distant from the other parties.
-We notice how the new \textit{Ampel Koalition}, that wasn't governing at the time, was already closer together than the governing \textit{Schwarz-rote Koalition}.
+We notice how the new \textit{Ampel Koalition}, that wasn't governing at the time, was already closer together than the governing \textit{Schwarz-rote Koalition} (topic similarity might indicate similar policy priorities).
 
 \begin{figure}
   \centering
@@ -171,7 +171,7 @@ We perform a p-value test for significant differences between the average propor
 We assume a binomial distribution of the amount of negative speeches, and use beta-distributed priors.
 We obtain p-values for the asymmetrical differences between the binomial negative speech probability of the whole set of speeches and the speeches of specific parties.
 Using a threshold $\alpha$ of $0.05$ with Bonferroni correction for multiple testing
-\footnote{2 asymmetrical tests per party and 6 parties yield 12 hypotheses, and a corrected $\alpha=0.004$}
+\footnote{2 asymmetrical tests per party and 6 parties yield 12 hypotheses, and a corrected $\alpha=0.004$.}
 we refute the null hypotheses that both \textit{SPD} and \textit{CDU/CSU} have a bigger or equal probability of a negative speech than the Bundestag's mean,
 and that \textit{Bündnis 90/Die Grünen}, \textit{AfD}, and \textit{Die Linke} have smaller or equal probability of a negative speech than the Bundestag's mean.
 We did not obtain significant results for both asymmetrical tests in the case of \textit{FDP}.
