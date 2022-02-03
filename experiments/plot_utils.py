@@ -116,12 +116,14 @@ def sentiments_plot(df):
         for party in parties])
 
     with plt.rc_context(bundles.neurips2021(usetex=False, family='serif')):
-        ratio = 2.5
+        ratio = 3.
         fig, ax = plt.subplots(figsize=adapt_figsize(ratio))
         im = ax.imshow(-sent, cmap='seismic')
 
+        #parties_labels = [p.replace('BÜNDNIS 90/', '') for p in parties]
+        parties_labels = parties
         ax.set_xticks(np.arange(len(topics)), labels=topics)
-        ax.set_yticks(np.arange(len(parties)), labels=parties)
+        ax.set_yticks(np.arange(len(parties)), labels=parties_labels)
 
         plt.setp(ax.get_xticklabels(), rotation=30, ha="right", rotation_mode="anchor")
 
@@ -132,6 +134,6 @@ def sentiments_plot(df):
         for i in range(len(parties)):
             for j in range(len(topics)):
                 color = "w" if sent[i, j] < min_val + 0.3 * delta or sent[i, j] > min_val + 0.7 * delta else "k"
-                ax.text(j, i, f'{round(sent[i, j], 2)} \n ({total[i, j]})', ha="center", va="center", color=color, fontsize=5)
+                ax.text(j, i, f'{round(sent[i, j], 2)} \n ({total[i, j]})', ha="center", va="center", color=color, fontsize=4)
 
     return fig
