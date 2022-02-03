@@ -11,3 +11,6 @@ data/state.txt
 
 # Ignore python compiled files
 **/*.pyc
+
+#Ignore ipynb.checkpoints
+**/.ipynb_checkpoints
