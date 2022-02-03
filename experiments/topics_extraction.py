@@ -8,6 +8,8 @@ from models.extract_topics import extract_topics
 
 
 def get_topics(params_path):
+    """Extract topics for each speech.
+    """
     params = importlib.import_module(params_path)
     save_path = params.paths['save_path']
     df, topics = extract_topics(params.paths['input_data_path'], **params.topic_extraction_params)
@@ -21,6 +23,8 @@ def get_topics(params_path):
 
 
 def plot_topics(topics, title='Top predictor features', n_words=9):
+    """Plot most important predictors for each topic.
+    """
     plt.rcParams.update(bundles.neurips2021(usetex=False))
     # Source: https://scikit-learn.org/stable/auto_examples/applications/plot_topics_extraction_with_nmf_lda.html
     n_cols = 3

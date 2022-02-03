@@ -13,7 +13,7 @@ if __name__ == '__main__':
     preprocessed_data_path = os.path.join(dirname, 'preprocessed_data.csv')
 
     get_pages(
-        n_pages=0,
+        n_pages=10000,
         data_path=data_path,
         state_path=state_path,
     )

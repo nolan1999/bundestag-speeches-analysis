@@ -1,3 +1,6 @@
+"""Plotting functions for the analyses.
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.decomposition import PCA
