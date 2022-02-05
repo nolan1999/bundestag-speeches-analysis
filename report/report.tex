@@ -61,6 +61,7 @@
 
 
 \section{Introduction}
+\footnote{Code and analyses: \url{https://github.com/nolan1999/bundestag-speeches-analysis}.}
 This paper describes a semantic analysis of transcribed speeches in the German parliament. 
 We first extract speech topics and analyze their temporal evolution.
 We then show the credibility of the extraction by visualizing the mean party topics and showing that the picture drawn is coherent to an intuitive view of the parties' differences.
@@ -91,7 +92,6 @@ We extract sentiments using the \href{https://pypi.org/project/germansentiment/}
 We use p-value testing with a binomial assumption for the distribution of negative sentiments to test for differences between parties in the proportion of negative speeches.
 
 \section{Results}
-\footnote{Code and analyses: \url{https://github.com/nolan1999/bundestag-speeches-analysis}.}
 The topics extracted from the speeches dataset and the name that was assigned to them are summarized in Table~\ref{topics_table}.
 \begin{table}
   \captionsetup{width=0.9\linewidth}
@@ -127,7 +127,8 @@ The \href{https://dserver.bundestag.de/btd/19/075/1907504.pdf}{Strong Families A
   \includegraphics[width=0.9\linewidth]{images/stacked_area_plot.pdf}
   \captionsetup{width=0.9\linewidth}
   \caption{
-    Average weight of topics discussed in the Bundestag (with Gaussian smoothing).
+    Average weight of speeches' topics (extracted with Latent Dirichlet allocation) discussed in the Bundestag, with Gaussian smoothing.
+    Notice the increase in the \textit{Health/Pandemic} topic.
     %The topics and topic weights are extracted using Latent Dirichlet Allocation Todo(check).
   }
   \label{stacked_area_plot}
@@ -138,7 +139,8 @@ The \href{https://dserver.bundestag.de/btd/19/075/1907504.pdf}{Strong Families A
   \includegraphics[width=0.9\linewidth]{images/Social.pdf}
   \captionsetup{width=0.9\linewidth}
   \caption{
-    Average weight of \textit{Social} in the Bundestag speeches (with Gaussian smoothing).
+    Average weight of the \textit{Social} topic in the Bundestag speeches, with Gaussian smoothing.
+    Notice the increase in the second half of 2018 (interpretation in the text).
   }
   \label{social_topic_plot}
 \end{figure}
@@ -155,7 +157,8 @@ We notice how the new \textit{Ampel Koalition}, that wasn't governing at the tim
   \includegraphics[width=0.9\linewidth]{images/pca.pdf}
   \captionsetup{width=0.9\linewidth}
   \caption{
-    Principal Component Analysis on average topics per party.
+    Principal Component Analysis on average topic weights per party.
+    Notice the distance between parties considered more extreme (\textit{Die Linke}, \textit{AfD}) and the other parties.
   }
   \label{pca_plot}
 \end{figure}
@@ -169,8 +172,7 @@ We perform a p-value test for significant differences between the average propor
 \footnote{We concentrate the analysis on negative sentiments, since very few positive sentiments are found.}.
 We assume a binomial distribution of the amount of negative speeches, and use beta-distributed priors.
 We obtain p-values for the asymmetrical differences between the binomial negative speech probability of the whole set of speeches and the speeches of specific parties.
-Using a threshold $\alpha$ of $0.05$ with Bonferroni correction for multiple testing
-\footnote{2 asymmetrical tests per party and 6 parties yield 12 hypotheses, and a corrected $\alpha=0.004$.}
+Using a threshold $\alpha$ of $0.05$ with Bonferroni correction for multiple testing (12 hypotheses)
 we refute the null hypotheses that both \textit{SPD} and \textit{CDU/CSU} have a bigger or equal probability of a negative speech than the Bundestag's mean,
 and that \textit{Bündnis 90/Die Grünen}, \textit{AfD}, and \textit{Die Linke} have smaller or equal probability of a negative speech than the Bundestag's mean.
 We did not obtain significant results for both asymmetrical tests in the case of \textit{FDP}.
@@ -184,6 +186,7 @@ These results are coherent with the hypothesis that non-governing parties tend t
     Average sentiment (from -1, fully negative, to +1, fully positive) by party and topic.
     The number in brackets indicates the number (significance) of speeches from which the mean is constructed.
     Each speech is assigned to a single topic (highest weight).
+    Notice the higher positivity of governing parties (\textit{SPD} and \textit{CDU/CSU}).
   }
   \label{sentiments_plot}
 \end{figure}
